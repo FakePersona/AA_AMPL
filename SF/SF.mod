@@ -16,10 +16,10 @@ var ind {1..N}, binary;
 #      subject to  in_d {i in 1..(N+2)} : sum{j in 1..(N+2)} x[i,j] <= 1;
 subject to out_d {i in 1..N} : sum{j in 1..N+2} x[j,i] <= 1;
 subject to flow {v in 1..N} : sum{j in 1..(N+2)} x[v,j] - sum{i in 1..(N+2)} x[i,v] = 0;
-subject to flow_in : sum{j in 1..N+2} x[N+1,j] - (sum{i in 1..N+2} x[i,N+1]) = 1;
-subject to flow_out : sum{j in 1..N+2} x[N+2,j] - sum{i in 1..N+2} x[i,N+2] = -1;
+subject to flow_in : (sum{j in 1..N+2} x[N+1,j]) - (sum{i in 1..N+2} x[i,N+1]) = 1;
+subject to flow_out : (sum{j in 1..N+2} x[N+2,j]) - (sum{i in 1..N+2} x[i,N+2]) = -1;
 
-subject to order_11 {i in 1..N} : sum{j in 1..N} f[j,i] - sum{j in 1..N} f[i,j] = ind[i];
+subject to order_11 {i in 1..N} : sum{j in 1..N+2} f[j,i] - sum{j in 1..N+2} f[i,j] = ind[i];
 subject to circulating_8 {(i,j) in  {1..(N+2),1..(N+2)}} : f[i,j] <= N*x[i,j];
 subject to init_10: sum{j in 1..N} f[N+1,j] = sum{j in 1..N} ind[j];
 subject to cons_12 {v in 1..(N)} : sum{j in 1..(N+2)} x[j,v] = ind[v];
