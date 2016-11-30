@@ -16,11 +16,11 @@ var t {1..N}, >= 0, <= 1;
 # the optimization problem objective
       maximize totallength : sum{(k,j) in A} l[k,j]*x[k,j];
 
-      
+
 
 # the constraint
 
-subject to c17 {v in 1..N} : i[v] + s[v] + t[v] <= 1;
+      subject to c17 {v in 1..N} : i[v] + s[v] + t[v] <= 1;
 subject to c18 {v in 1..N} : s[v] + i[v] = sum{j in 1..N} x[v,j];
 subject to c19 {v in 1..N} : t[v] + i[v] = sum{j in 1..N} x[j,v];
 
