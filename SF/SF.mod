@@ -23,3 +23,4 @@ subject to order {i in 1..N} : sum{j in 1..N} f[j,i] - sum{j in 1..N} f[i,j] = i
 subject to circulating {(i,j) in  {1..(N+2),1..(N+2)}} : f[i,j] <= N*x[i,j];
 subject to init : sum{j in 1..N} f[N+1,j] = sum{j in 1..N} ind[j];
 subject to cons {v in 1..(N)} : sum{j in 1..(N+2)} x[j,v] = ind[v];
+e
