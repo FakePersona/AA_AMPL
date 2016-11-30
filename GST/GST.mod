@@ -30,3 +30,5 @@ subject to c20b : sum{v in 1..N} t[v] = 1;
 subject to c22 {(k,j) in  {1..N,1..N}} : f[k,j] <= N*x[k,j];
 subject to c23 {v in 1..N} : sum{j in 1..N} f[j,v] - sum{j in 1..N} f[v,j] >= i[v] - s[v]*N + t[v];
 subject to c24 {v in 1..N} : s[v] * N + i[v] <= sum{j in 1..N} f[v,j];
+
+subject to exist {(k,j) in {1..N,1..N}}: x[k,j] <= if (k,j) in A then 1 else 0;
