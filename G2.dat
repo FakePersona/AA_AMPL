@@ -1,0 +1,38 @@
+data;
+set V := 
+A
+B
+C
+D
+E
+F
+G
+;
+set E := 
+A B
+A C
+A D
+B E 
+C B
+E C
+E D
+E F
+D F
+E G
+F G
+;
+param l := 
+A B 3
+A C 3
+A D 4
+B E 2
+C B 10
+E C 1
+E D 1
+E F 1
+D F 5
+E G 2
+F G 5
+;
+
+display l;
