@@ -1,0 +1,334 @@
+\documentclass{article}
+
+\begin{document}
+\section{Initial model}
+
+
+option show_stats 1;
+option omit_zero_rows 1;
+option omit_zero_col 1;
+option display_1col 10000;
+
+solve;
+display totallength;
+#display e;
+
+
+\paragraph{1}
+
+Cf Vanilla
+
+\paragraph{2}
+
+figure
+
+Presolve eliminates 1 constraint.
+Adjusted problem:
+25 variables, all binary
+15 constraints, all linear; 67 nonzeros
+	9 equality constraints
+	6 inequality constraints
+1 linear objective; 11 nonzeros.
+
+LP_SOLVE 4.0.1.0: optimal, objective 26
+21 simplex iterations
+totallength = 26
+
+\paragraph{3}
+
+Cf Vanilla
+
+\paragraph{4}
+
+
+Presolve eliminates 1 constraint.
+Adjusted problem:
+25 variables, all linear
+15 constraints, all linear; 67 nonzeros
+	9 equality constraints
+	6 inequality constraints
+1 linear objective; 11 nonzeros.
+
+LP_SOLVE 4.0.1.0: optimal, objective 26
+21 simplex iterations
+totallength = 26
+
+Same result. The constraint matrix is the node arc matrix of a directed graph which means it is TUM, therefore, the LP problem gives an integer solution.
+
+\paragraph{5}
+
+figure
+
+Presolve eliminates 1 constraint.
+Adjusted problem:
+25 variables, all binary
+15 constraints, all linear; 67 nonzeros
+	9 equality constraints
+	6 inequality constraints
+1 linear objective; 11 nonzeros.
+
+LP_SOLVE 4.0.1.0: optimal, objective 27
+22 simplex iterations
+totallength = 27
+
+\subsection{MTZ}
+
+\paragraph{1}
+
+Cf MTZ
+
+\paragraph{2}
+
+figure
+
+Presolve eliminates 1 constraint.
+Adjusted problem:
+32 variables:
+	25 binary variables
+	7 integer variables
+26 constraints, all linear; 100 nonzeros
+	9 equality constraints
+	17 inequality constraints
+1 linear objective; 11 nonzeros.
+
+LP_SOLVE 4.0.1.0: optimal, objective 26
+105 simplex iterations
+9 branch \& bound nodes: depth 4
+totallength = 26
+
+\paragraph{3}
+
+Cf MTZ
+
+\paragraph{4}
+
+Presolve eliminates 1 constraint.
+Adjusted problem:
+32 variables:
+	7 integer variables
+	25 linear variables
+26 constraints, all linear; 100 nonzeros
+	9 equality constraints
+	17 inequality constraints
+1 linear objective; 11 nonzeros.
+
+LP_SOLVE 4.0.1.0: optimal, objective 26.625
+29 simplex iterations
+totallength = 26.625
+
+Non-integer solution, the matrix is not TUM anymore. Therefore we have no guarantee the solution will be integer.
+On the plus side, it is much faster.
+
+\paragraph{5}
+
+There should be $|E|+2|V|$ binary variables (arc matrix) and $|V|$ integer variables (indexes). Moreover, there should be $|V|+2$ equalities and $|E|+|V|$ inequalities.
+
+This fits with what AMPL computes, though 1 inequalities seems tobe eliminated by presolve.
+
+\subsection{SF}
+
+\paragraph{1}
+
+Cf SF
+
+\paragraph{2}
+
+figure
+
+Presolve eliminates 1 constraint.
+Adjusted problem:
+57 variables:
+	32 binary variables
+	25 linear variables
+57 constraints, all linear; 213 nonzeros
+	26 equality constraints
+	31 inequality constraints
+1 linear objective; 11 nonzeros.
+
+LP_SOLVE 4.0.1.0: optimal, objective 26
+87 simplex iterations
+7 branch \& bound nodes: depth 4
+totallength = 26
+
+same result, more constraints and variables but faster somehow
+
+\paragraph{3}
+
+There should be $|E|+3|V|$ binary variables (arc matrix and indexes), and $|E|+2|V|$ real variables (flow). Moreover, there should be $3|V|+5$ equalities and $|E|+3|V|$ inequalities.
+
+This fits with what AMPL computes, though 1 inequalities seems tobe eliminated by presolve.
+
+\paragraph{4}
+
+MTZ on fast\_10
+
+64 variables:
+	54 binary variables
+	10 integer variables
+56 constraints, all linear; 254 nonzeros
+	12 equality constraints
+	44 inequality constraints
+1 linear objective; 32 nonzeros.
+
+LP_SOLVE 4.0.1.0: optimal, objective 63
+6186 simplex iterations
+595 branch \& bound nodes: depth 34
+totallength = 63
+
+SF on fast\_10
+
+118 variables:
+	64 binary variables
+	54 linear variables
+99 constraints, all linear; 452 nonzeros
+	35 equality constraints
+	64 inequality constraints
+1 linear objective; 32 nonzeros.
+
+LP_SOLVE 4.0.1.0: optimal, objective 63
+11419 simplex iterations
+455 branch \& bound nodes: depth 34
+totallength = 63
+
+MTZ on ladder\_8
+
+92 variables:
+	76 binary variables
+	16 integer variables
+78 constraints, all linear; 344 nonzeros
+	18 equality constraints
+	60 inequality constraints
+1 linear objective; 38 nonzeros.
+
+LP_SOLVE 4.0.1.0: optimal, objective 87
+53261 simplex iterations
+3793 branch \& bound nodes: depth 30
+totallength = 87
+
+SF on ladder\_8
+
+168 variables:
+	92 binary variables
+	76 linear variables
+145 constraints, all linear; 640 nonzeros
+	53 equality constraints
+	92 inequality constraints
+1 linear objective; 38 nonzeros.
+
+LP_SOLVE 4.0.1.0: optimal, objective 87
+64508 simplex iterations
+1933 branch \& bound nodes: depth 42
+totallength = 87
+
+MTZ on wheel\_15
+
+101 variables:
+	86 binary variables
+	15 integer variables
+88 constraints, all linear; 411 nonzeros
+	17 equality constraints
+	71 inequality constraints
+1 linear objective; 50 nonzeros.
+
+LP_SOLVE 4.0.1.0: optimal, objective 91
+22510 simplex iterations
+1145 branch \& bound nodes: depth 34
+totallength = 91
+
+SF on wheel\_15
+
+187 variables:
+	101 binary variables
+	86 linear variables
+151 constraints, all linear; 718 nonzeros
+	50 equality constraints
+	101 inequality constraints
+1 linear objective; 50 nonzeros.
+
+LP_SOLVE 4.0.1.0: optimal, objective 91
+19752 simplex iterations
+413 branch \& bound nodes: depth 25
+totallength = 91
+
+\section{GST}
+
+\paragraph{1}
+
+cf GST
+
+\paragraph{2}
+
+figure
+
+Presolve eliminates 5 constraints and 4 variables.
+Adjusted problem:
+39 variables:
+	11 binary variables
+	28 linear variables
+43 constraints, all linear; 154 nonzeros
+	14 equality constraints
+	29 inequality constraints
+1 linear objective; 11 nonzeros.
+
+LP_SOLVE 4.0.1.0: optimal, objective 26
+192 simplex iterations
+7 branch \& bound nodes: depth 4
+totallength = 26
+
+\paragraph{3}
+
+There should be $|E|$ binary variables (arc matrix) and $|E|+3|V|$ integer variables (indexes and flow). Moreover, there should be $2|V|+2$ equalities and $|E|+3|V|$ inequalities.
+
+This fits with what AMPL computes, though 2 equalities, 3 inequalities and 4 real variables seems to be eliminated by presolve.
+
+\paragraph{4}
+
+binary i s v on g2
+
+Presolve eliminates 5 constraints and 4 variables.
+Adjusted problem:
+39 variables:
+	28 binary variables
+	11 linear variables
+43 constraints, all linear; 154 nonzeros
+	14 equality constraints
+	29 inequality constraints
+1 linear objective; 11 nonzeros.
+
+LP_SOLVE 4.0.1.0: optimal, objective 26
+132 simplex iterations
+7 branch \& bound nodes: depth 4
+totallength = 26
+
+relaxed on fast
+
+98 variables:
+	34 binary variables
+	64 linear variables
+86 constraints, all linear; 378 nonzeros
+	22 equality constraints
+	64 inequality constraints
+1 linear objective; 32 nonzeros.
+
+LP_SOLVE 4.0.1.0: optimal, objective 63
+21001 simplex iterations
+355 branch \& bound nodes: depth 24
+totallength = 63
+
+binary on fast
+
+98 variables:
+	64 binary variables
+	34 linear variables
+86 constraints, all linear; 378 nonzeros
+	22 equality constraints
+	64 inequality constraints
+1 linear objective; 32 nonzeros.
+
+LP_SOLVE 4.0.1.0: optimal, objective 63
+7555 simplex iterations
+99 branch \& bound nodes: depth 15
+totallength = 63
+
+
+\end{document}
