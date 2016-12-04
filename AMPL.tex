@@ -23,8 +23,8 @@
 \maketitle
 
 On remarque une amélioration globale des résultats avec les contraintes du TP2 par
-rapport à ceux du TP1 (certains résultats du TP1 semblent marginalement meilleurs). En particulier, la non relaxation de i,s,v rend le
-probléme wheel trop compliqué pour être résolu par lpsolve en temps raisonnable.
+rapport à ceux du TP1 (certains résultats du TP1 semblent marginalement meilleurs). En particulier, la non relaxation de i, s, v rend le
+problème wheel trop compliqué pour être résolu par lpsolve en temps raisonnable.
 
 Une version n'utilisant pas les ensembles mais des matrices est également
 fournie pour SF et MTZ. La traduction a été faite mécaniquement et peut abriter
@@ -175,7 +175,7 @@ On the plus side, it is much faster.
 
 There should be $|E|+2|V|$ binary variables (arc matrix) and $|V|$ integer variables (indexes). Moreover, there should be $|V|+2$ equalities and $|E|+|V|$ inequalities.
 
-This fits with what AMPL computes, though 1 inequalities seems tobe eliminated by presolve.
+This fits with what AMPL computes, though 1 inequalities seems to be eliminated by presolve.
 
 \subsection{SF}
 
@@ -210,7 +210,7 @@ same result, more constraints and variables but faster somehow
 
 There should be $|E|+3|V|$ binary variables (arc matrix and indexes), and $|E|+2|V|$ real variables (flow). Moreover, there should be $3|V|+5$ equalities and $|E|+3|V|$ inequalities.
 
-This fits with what AMPL computes, though 1 inequalities seems tobe eliminated by presolve.
+This fits with what AMPL computes, though 1 inequalities seems to be eliminated by presolve.
 
 \paragraph{4}
 MTZ seems more interesting in terms of simplex iterations but causes more
